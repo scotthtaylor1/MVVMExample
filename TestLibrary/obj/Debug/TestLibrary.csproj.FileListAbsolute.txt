@@ -1,0 +1,6 @@
+E:\Documents\Visual Studio 2017\Projects\MVVMExample\TestLibrary\bin\Debug\TestLibrary.dll
+E:\Documents\Visual Studio 2017\Projects\MVVMExample\TestLibrary\bin\Debug\TestLibrary.pdb
+E:\Documents\Visual Studio 2017\Projects\MVVMExample\TestLibrary\obj\Debug\TestLibrary.csprojAssemblyReference.cache
+E:\Documents\Visual Studio 2017\Projects\MVVMExample\TestLibrary\obj\Debug\TestLibrary.csproj.CoreCompileInputs.cache
+E:\Documents\Visual Studio 2017\Projects\MVVMExample\TestLibrary\obj\Debug\TestLibrary.dll
+E:\Documents\Visual Studio 2017\Projects\MVVMExample\TestLibrary\obj\Debug\TestLibrary.pdb

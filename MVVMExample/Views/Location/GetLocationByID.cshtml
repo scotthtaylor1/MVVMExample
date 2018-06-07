@@ -1,0 +1,10 @@
+﻿@model MVVMExample.Models.LocationModel
+@{
+    ViewBag.Title = "Location Detail";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.DisplayFor(m => m.LocationName)<br />
+@Html.DisplayFor(m => m.FullAddress)<br />
+@Html.DisplayFor(m => m.ParentLocationName)

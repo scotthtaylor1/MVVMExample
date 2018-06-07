@@ -1,0 +1,44 @@
+﻿using System;
+using System.Web;
+using System.Web.Mvc;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MVVMExample.Controllers;
+using MVVMExample.Models;
+
+namespace MVVMExample.Tests.Controllers
+{
+    [TestClass]
+    public class LoginControllerTest
+    {
+
+        [TestMethod]
+        public void Login()
+        {
+            // Arrange
+            LoginController loginController = new LoginController();
+            var returnUrl = "";
+
+            // Act
+            var actionResult = loginController.Login(returnUrl) as ViewResult;
+
+            // Assert
+            Assert.IsInstanceOfType(actionResult.Model, typeof(LoginModel));
+        }
+
+        [TestMethod]
+        public void Login_UsernamePasswordEntered()
+        {
+            // Arrange
+            LoginController loginController = new LoginController();
+            var returnUrl = "";
+            HttpContext.Current.Session["UserID"] = 736;
+            //HttpContext.Current.Request["UserName"] = "staylor";
+
+            // Act
+            var actionResult = loginController.Login(returnUrl) as ViewResult;
+
+            // Assert
+            Assert.IsInstanceOfType(actionResult.Model, typeof(LoginModel));
+        }
+    }
+}

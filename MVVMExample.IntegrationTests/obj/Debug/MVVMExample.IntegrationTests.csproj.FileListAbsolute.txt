@@ -1,0 +1,14 @@
+E:\Documents\Visual Studio 2017\Projects\MVVMExample\MVVMExample.IntegrationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+E:\Documents\Visual Studio 2017\Projects\MVVMExample\MVVMExample.IntegrationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+E:\Documents\Visual Studio 2017\Projects\MVVMExample\MVVMExample.IntegrationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+E:\Documents\Visual Studio 2017\Projects\MVVMExample\MVVMExample.IntegrationTests\bin\Debug\MVVMExample.IntegrationTests.dll
+E:\Documents\Visual Studio 2017\Projects\MVVMExample\MVVMExample.IntegrationTests\bin\Debug\MVVMExample.IntegrationTests.pdb
+E:\Documents\Visual Studio 2017\Projects\MVVMExample\MVVMExample.IntegrationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+E:\Documents\Visual Studio 2017\Projects\MVVMExample\MVVMExample.IntegrationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+E:\Documents\Visual Studio 2017\Projects\MVVMExample\MVVMExample.IntegrationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+E:\Documents\Visual Studio 2017\Projects\MVVMExample\MVVMExample.IntegrationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+E:\Documents\Visual Studio 2017\Projects\MVVMExample\MVVMExample.IntegrationTests\obj\Debug\MVVMExample.IntegrationTests.csprojAssemblyReference.cache
+E:\Documents\Visual Studio 2017\Projects\MVVMExample\MVVMExample.IntegrationTests\obj\Debug\MVVMExample.IntegrationTests.csproj.CoreCompileInputs.cache
+E:\Documents\Visual Studio 2017\Projects\MVVMExample\MVVMExample.IntegrationTests\obj\Debug\MVVMExample.IntegrationTests.csproj.CopyComplete
+E:\Documents\Visual Studio 2017\Projects\MVVMExample\MVVMExample.IntegrationTests\obj\Debug\MVVMExample.IntegrationTests.dll
+E:\Documents\Visual Studio 2017\Projects\MVVMExample\MVVMExample.IntegrationTests\obj\Debug\MVVMExample.IntegrationTests.pdb

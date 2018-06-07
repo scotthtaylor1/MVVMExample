@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/common")
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div class="navbar-brand" style="font-size:1.75vw !important; min-width:250px; color: #fff !important;" id="navMainTitle">@ViewBag.Title</div>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menuNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="menuNavbar">
+                <ul class="nav navbar-nav navbar-left" id="ulMenuNavbar">
+                    @{
+                        if (Session["userID"] != null)
+                        {
+                            if (Session["ParentMenu"] != null)
+                            {
+                                var parentMenu = Session["ParentMenu"] as List<MVVMExample.Models.ParentMenu>;
+                                var childMenu = Session["ChildMenu"] as List<MVVMExample.Models.ChildMenu>;
+                                foreach (var parentItem in parentMenu)
+                                {
+                                    var childItem = childMenu.Where(m => m.ParentReportID == parentItem.ReportID);
+                                    if (childItem.Count() == 0)
+                                    {
+                                        <li class="topMenu"><a href="#"><span style="color:black;">@parentItem.ReportName</span></a></li>
+                                    }
+                                    else
+                                    {
+                                        <li class="dropdown topMenu">
+                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span>@parentItem.ReportName</span></a>
+                                            <ul class="dropdown-menu submenu">
+                                                @foreach (var childMenuItem in childItem)
+                                                {
+                                                    <li style="line-height: 10px !important;">
+                                                        <span style="color:black; padding: 5px !important;">
+                                                            @Html.ActionLink(@childMenuItem.ReportName, @childMenuItem.LiteURL, @childMenuItem.Controller, null, new { @class = "submenuItem" })
+                                                        </span>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </li>
+                                    }
+                                }
+                            }
+                        }
+                    }
+                </ul>
+                @if (Session["UserID"] != null)
+            {
+                using (Html.BeginForm("LogOff", "Login", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                {
+                        @Html.AntiForgeryToken()
+                        <ul class="nav navbar-nav" style="margin-right:15px; margin-top:-20px;" id="navMainRight">
+                            <li>
+
+                                @Html.ActionLink(" ", "/MyAccount", "User", null, new
+                               {
+                                   @class = "glyphicon glyphicon-user",
+                                   @data_toggle = "tooltip",
+                                   @title = "My Account",
+                                   @data_placement = "auto",
+                                   style = "margin-top:18px;color:#fff"
+                               })
+                            </li>
+                        </ul>
+                            <ul class="nav navbar-nav navbar-right" style="margin-right:10px;" id="navLogout">
+                                <li><a href="javascript:document.getElementById('logoutForm').submit();">Logout</a></li>
+                            </ul>
+                    }
+                }
+            </div>
+        </div>
+    </nav>
+    <div class="body-content">
+        @{
+            if (Session["userID"] != null)
+            { <span style="float:right; font-size:1.25vw;" id="spanLoggedIn">Logged in as @Session["FirstName"].ToString() @Session["LastName"].ToString()</span>} }
+        @RenderBody()
+        <footer class="footer">
+            <hr />
+            <span style="float:left; font-size:1.25vw;">&copy; @DateTime.Now.Year - InstaKey Security Systems</span>
+            <span style="float:right; font-size:1.25vw;">Powered By <img src="~/Images/SecurityRecordsV3Logo.png" style="margin-bottom:7px; width:9vw;" /></span>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery-ui")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/common")
+    @Scripts.Render("~/bundles/validation")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

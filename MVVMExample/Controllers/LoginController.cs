@@ -1,0 +1,117 @@
+﻿using MVVMExample.Models;
+using MVVMExample.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
+
+namespace MVVMExample.Controllers
+{
+    public class LoginController : Controller
+    {
+        public LoginController()
+        {
+
+        }
+
+        // GET: Login
+        [AllowAnonymous]
+        public ActionResult Login(string returnUrl)
+        {
+            LoginModel model = new LoginModel();
+            try
+            {
+                Session.Remove("UserID");
+            }
+            catch { }
+
+            ViewBag.ReturnUrl = returnUrl;
+
+            try
+            {
+                if (Request["NeedSecurityAnswer"] != null && Request["NeedSecurityAnswer"].ToString() == "-1")
+                    ViewBag.NeedSecurityAnswer = Request["NeedSecurityAnswer"].ToString();
+            }
+            catch { }
+
+            try
+            {
+                if (Request.Cookies["UserSettings"]["UserName"] != null)
+                {
+                    model.Username = Request.Cookies["UserSettings"]["UserName"].ToString();
+                    model.RememberMe = true;
+
+                }
+            }
+            catch { }
+
+            return View(model);
+        }
+
+        // POST: /Account/Login
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(LoginModel model, string returnUrl)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            LoginViewModel loginViewModel = new LoginViewModel();
+            var userID = loginViewModel.login(model);
+
+            if (userID != "0")
+            {
+                MenuViewModel objMenuModel = new MenuViewModel();
+                objMenuModel.GetMenuItems(userID);
+
+                try
+                {
+                    if (model.RememberMe)
+                    {
+                        Response.Cookies["UserSettings"]["UserName"] = model.Username;
+                        Response.Cookies["UserSettings"].Expires = DateTime.Now.AddDays(1d);
+                    }
+                    else if (Request.Cookies["UserName"] != null)
+                    {
+                        Response.Cookies["UserSettings"].Expires = DateTime.Now.AddDays(-1d);
+                    }
+                }
+                catch { }
+
+                // Check Security Answer
+                var securityAnswer = loginViewModel.CheckSecurityAnswer(userID);
+                if (securityAnswer == "")
+                {
+                    return RedirectToAction("SecurityQuestion", "Home");
+                }
+
+                try
+                {
+                    List<ChildMenu> subMenuItems = (List<ChildMenu>)Session["ChildMenu"];
+                }
+                catch { }
+
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Incorrect Login.  Please try again.");
+            }
+
+
+            return View();
+        }
+
+        // POST: /Account/LogOff
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult LogOff()
+        {
+            Session.Remove("userID");
+            return RedirectToAction("Login", "Login");
+        }
+    }
+}
